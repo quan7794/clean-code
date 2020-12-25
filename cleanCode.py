@@ -100,37 +100,39 @@ def demo2():
     except Exception as e:
         print(f"Error: {e}")
 
-#1____________________________________________________________________________________
+#1________________Use Exceptions Rather Than Return Codes____________________________________________________________________
 def main():
     num1 = "10" 
-    num2 = "It is not number"
+    num2 = "It is string."
     num3 = "0"
     num4 = "5"
-    result = divisionUseException(num1,num3)
+    # result = divisionUseReturnCode(num1, num3)
+    result = divisionUseException(num1, num3)
     print(result)
 
-class errorHandler():
+import enum
+class errorHandler(enum.Enum):
     DIVISION_BY_ZERO_ERROR = "divideByZero"
     NOT_NUMBER_ERROR = "notNumber"
 
 def divisionUseReturnCode(number1, number2):
     if not number1.isnumeric():
-        return errorHandler.NOT_NUMBER_ERROR
+        return errorHandler.NOT_NUMBER_ERROR.value
     if not number2.isnumeric():
-        return errorHandler.NOT_NUMBER_ERROR
+        return errorHandler.NOT_NUMBER_ERROR.value
     if int(number2) is 0:
-        return errorHandler.DIVISION_BY_ZERO_ERROR
+        return errorHandler.DIVISION_BY_ZERO_ERROR.value
     return int(number1) / int(number2) 
+
 def divisionUseException(number1, number2):
     try:
         return int(number1) / int(number2)
     except Exception as e:
         return e
 
-
-
 if __name__ == '__main__':
     main()
+    print("Program ended!")
 
 
 
